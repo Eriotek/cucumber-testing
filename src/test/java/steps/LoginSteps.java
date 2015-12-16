@@ -1,5 +1,6 @@
 package steps;
 
+import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -33,4 +34,29 @@ public class LoginSteps {
     public void I_should_be_signed_in() throws Throwable {
         Assert.assertTrue(homePageActions.isLogoutButton());
     }
+
+    @Given("^I am logged in$")
+    public void iAmLoggedIn() throws Throwable {
+        I_am_on_login_page();
+        I_enter_correct_credentials();
+
+    }
+
+    @When("^I logout from system$")
+    public void iLogoutFromSystem() throws Throwable {
+        homePageActions.logoutFromSystem();
+
+    }
+
+    @Then("^I am logged out$")
+    public void iAmLoggedOut() throws Throwable {
+        Assert.assertTrue(homePageActions.isUserNotLogged());
+    }
+
+    @Given("^I am logged in as user \"([^\"]*)\" with pwd \"([^\"]*)\"$")
+    public void iAmLoggedInAsUserWithPwd(String login, String password) throws Throwable {
+        I_am_on_login_page();
+        loginPageActions.signInUser(login, password);
+    }
+
 }

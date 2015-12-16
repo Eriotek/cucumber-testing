@@ -19,6 +19,9 @@ public class HomePageLocators {
     @FindBy(how = How.XPATH, using = "//a[@href='/login']")
     public WebElement loginLink;
 
+    @FindBy(how = How.XPATH, using = "html/body/nav/ul/li[5]/a")
+    public WebElement addItemsLink;
+
     @FindBy(how = How.XPATH, using = "//a[@href='/register']")
     public WebElement registerLink;
 
